@@ -1,0 +1,107 @@
+-- MM2 Auto-Farm GUI API
+-- Version: 1.0
+
+local MM2GUI = {}
+
+-- Services
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer
+
+-- Create GUI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "MM2AutoFarmGUI"
+ScreenGui.Parent = lp:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Main Frame
+local Frame = Instance.new("Frame")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Frame.BackgroundTransparency = 0.05
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.3336, 0, 0.077, 0)
+Frame.Size = UDim2.new(0, 379, 0, 160)
+
+local UICorner = Instance.new("UICorner")
+UICorner.Parent = Frame
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Parent = Frame
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0.1679, 0, 0.042, 0)
+Title.Size = UDim2.new(0, 252, 0, 33)
+Title.Font = Enum.Font.Nunito
+Title.Text = "MM2 Auto-Farm"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextScaled = true
+Title.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextWrapped = true
+
+-- Coins Label
+local Coins = Instance.new("TextLabel")
+Coins.Parent = Frame
+Coins.BackgroundTransparency = 1
+Coins.Position = UDim2.new(0.0518, 0, 0.392, 0)
+Coins.Size = UDim2.new(0, 202, 0, 33)
+Coins.Font = Enum.Font.Nunito
+Coins.Text = "Coins: 0"
+Coins.TextColor3 = Color3.fromRGB(159, 173, 0)
+Coins.TextScaled = true
+Coins.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Coins.TextWrapped = true
+
+-- Divider
+local Divider = Instance.new("Frame")
+Divider.Parent = Frame
+Divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Divider.BorderSizePixel = 0
+Divider.Position = UDim2.new(0, 0, 0.26, 0)
+Divider.Size = UDim2.new(0, 379, 0, 2)
+
+-- Time Running Label
+local TimeRunning = Instance.new("TextLabel")
+TimeRunning.Parent = Frame
+TimeRunning.BackgroundTransparency = 1
+TimeRunning.Position = UDim2.new(0.6983, 0, 0.886, 0)
+TimeRunning.Size = UDim2.new(0, 114, 0, 18)
+TimeRunning.Font = Enum.Font.Nunito
+TimeRunning.Text = "Uptime: 0:00:00"
+TimeRunning.TextColor3 = Color3.fromRGB(108, 108, 108)
+TimeRunning.TextScaled = true
+TimeRunning.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+TimeRunning.TextWrapped = true
+
+-- FPS Label
+local Fps = Instance.new("TextLabel")
+Fps.Parent = Frame
+Fps.BackgroundTransparency = 1
+Fps.Position = UDim2.new(-0.0009, 0, 0.892, 0)
+Fps.Size = UDim2.new(0, 114, 0, 17)
+Fps.Font = Enum.Font.Nunito
+Fps.Text = "FPS: 0"
+Fps.TextColor3 = Color3.fromRGB(229, 229, 229)
+Fps.TextScaled = true
+Fps.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Fps.TextWrapped = true
+
+-- API Functions
+function MM2GUI.SetCoins(amount)
+    Coins.Text = "Coins: "..tostring(amount)
+end
+
+function MM2GUI.SetUptime(timeString)
+    TimeRunning.Text = "Uptime: "..tostring(timeString)
+end
+
+function MM2GUI.SetFPS(fps)
+    Fps.Text = "FPS: "..tostring(fps)
+end
+
+function MM2GUI.Destroy()
+    if ScreenGui then
+        ScreenGui:Destroy()
+    end
+end
+
+return MM2GUI
